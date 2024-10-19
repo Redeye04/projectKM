@@ -4,72 +4,360 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Kekran Mekran.png">
-    <title>Title</title>
+    <title>Kekran Mekran - Explore with Us</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Color Palette */
+        :root {
+            --dark-green: #2F4F4F;
+            --tree-brown: #8B4513;
+            --leaf-green: #6B8E23;
+            --sky-blue: #87CEEB;
+            --soft-beige: #F5F5DC;
+            --font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--soft-beige);
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: var(--dark-green);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        #logo img {
+            height: 60px;
+        }
+
+        .menuitems {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .menuitems a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .menuitems a:hover {
+            color: var(--sky-blue);
+        }
+
+        #contactbutton {
+            background-color: var(--leaf-green);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #contactbutton:hover {
+            background-color: var(--tree-brown);
+        }
+
+        .hero {
+            background-image: url('../background.png');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero h1, .hero p, .hero button {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #d7cc76;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #df6238;
+        }
+
+        .hero button {
+            background-color: var(--leaf-green);
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hero button:hover {
+            background-color: var(--tree-brown);
+        }
+
+        /* About Section */
+        #about {
+            display: flex;
+            padding: 80px 20px;
+            background-color: var(--soft-beige);
+            gap: 310px;
+        }
+
+        #about h2 {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+            color: var(--dark-green);
+        }
+
+        #about p {
+            font-size: 1.2rem;
+            max-width: 900px;
+        }
+
+        #about img {
+            left: auto;
+        }
+
+        /* Services Section */
+        #services {
+            padding: 80px 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        #services h2 {
+            font-size: 2.4rem;
+            margin-bottom: 40px;
+            color: var(--dark-green);
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            padding: 80px 20px;
+            background-color: var(--leaf-green);
+            color: white;
+            text-align: center;
+        }
+
+        #testimonials h2 {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+        }
+
+        .testimonial {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 80px 20px;
+            background-color: var(--dark-green);
+            text-align: center;
+            color: white;
+        }
+
+        #contact h2 {
+            font-size: 2.4rem;
+            margin-bottom: 30px;
+        }
+
+        #contact button {
+            background-color: var(--leaf-green);
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #contact button:hover {
+            background-color: var(--tree-brown);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: #ddd;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ddd;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
-<style>
-    body {
-        background-color: #F5F5DC;
-    }
-    #logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        flex-wrap:nowrap;
-        gap: 800px;
-        
-    }
-    #logo #companylogo1 {
-        height: 80px;
-        left: 100px;
-    }
-    header {
-        position: sticky;
-        border-radius: 40px;
-    }
-    h1 {
-        color: #FAF9F6;
-    }
-    #servicetab {
-        font-size: large;
-        color: #FAF9F6;
-    }
-    .menuitems {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-    }
-    #contactbutton {
-        font-size: larger;
-        border-radius: 5px;
-        background-color: rgb(74, 246, 59);
-    }
-    .Service {
-        font-size: 26px;
-    }
-</style>
 <body>
+
+    <!-- Header -->
     <header>
         <div id="logo">
-            <div id="companylogo">
-                <img id = "companylogo1" src="../Kekran_Mekran__1_-removebg-previewcopy.png"/>
-            </div>
-            <div class="menuitems">
-                <div class="Service">Service</div>
-                <div class="Contact">
-                    <button id="contactbutton">
-                        Contact us
-                    </button>
-                </div>
-            </div>
-            
+            <img src="../Kekran_Mekran__1_-removebg-previewcopy.png" alt="Kekran Mekran Logo">
         </div>
-        <hr>
+        <div class="menuitems">
+            <a href="#about">About Us</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact Us</a>
+        </div>
     </header>
 
-    <div id="intro">
-        
-    </div>
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Explore the World with Kekran Mekran</h1>
+        <p>Your adventure starts here! Join us on exciting trips.</p>
+        <button>Explore Now</button>
+    </section>
 
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="bbb">
+            <h2>About Us</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non augue odio. Aenean sodales suscipit convallis. Morbi in ullamcorper ante, laoreet mollis purus. Phasellus arcu lacus, imperdiet elementum luctus ut, tempor eu sem. Maecenas non fringilla erat. Aenean sit amet nibh mattis, blandit lacus ut, ultrices diam. Donec sit amet vestibulum eros, quis sollicitudin mi. Suspendisse potenti. Nunc cursus eu sem at congue.
+                <br>
+                <br>
+                Nulla interdum nulla nec luctus pellentesque. Phasellus facilisis interdum tortor, rhoncus aliquam libero efficitur nec. Donec sollicitudin blandit orci. Donec pretium lectus vitae feugiat suscipit. Suspendisse non interdum ante. Nam volutpat, nisl sed condimentum vulputate, mi libero hendrerit sem, sed iaculis eros ipsum at mi. Integer congue tristique pulvinar. Morbi vel cursus ex. Nullam vel quam mauris. Morbi viverra lorem eu pharetra facilisis. Praesent in ligula molestie, consequat risus vitae, vehicula metus. Curabitur consequat urna nec magna facilisis ultrices.
+            </p>
+        </div>
+        <img src="../Kekran_Mekran-removebg-preview.png" alt="kekranmekran">
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-card">
+            <h3>Industrial Visits</h3>
+            <p>Join us for educational trips to industries and gain hands-on insights.</p>
+        </div>
+        <div class="service-card">
+            <h3>Corporate Tours</h3>
+            <p>Tailored corporate tours to foster team building and relaxation.</p>
+        </div>
+        <div class="service-card">
+            <h3>Family Tours</h3>
+            <p>Enjoy quality time with your loved ones on our family-friendly trips.</p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <h2>Testimonials</h2>
+        <div class="testimonial">
+            <p>"Kekran Mekran made our family trip unforgettable! Highly recommend!"</p>
+        </div>
+        <div class="testimonial">
+            <p>"The corporate tour was perfectly organized. Great experience!"</p>
+        </div>
+        <div class="testimonial">
+            <p>"An amazing journey! The guides were knowledgeable and friendly."</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or would like to book a tour, feel free to reach out!</p>
+        <button onclick="window.location.href='mailto:info@kekranmekran.com';">Email Us</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Kekran Mekran. All rights reserved.</p>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <div>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://twitter.com" target="_blank">Twitter</a>
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for internal links
+        const links = document.querySelectorAll('.menuitems a');
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

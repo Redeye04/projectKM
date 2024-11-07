@@ -56,25 +56,27 @@
       headers: {'X-Requested-With': 'XMLHttpRequest'}
     })
     .then(response => {
-      if( response.ok ) {
-        return response.text();
+      if(response.ok) {
+        return response.json();  // Parse the response as JSON
       } else {
-        throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
       }
     })
     .then(data => {
       thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
+      // Check if the response was successful based on the server's response structure
+      if (data.success) {
+        thisForm.querySelector('.sent-message').innerHTML = 'Email sent &#10003;';  // Success message with a tick mark
         thisForm.querySelector('.sent-message').classList.add('d-block');
-        thisForm.reset(); 
+        thisForm.reset();
       } else {
-        throw new Error(data ? data : 'Form submission failed and no error message returned from: ' + action); 
+        throw new Error('Failed to send &#10007;');  // Failure message with a cross mark
       }
     })
     .catch((error) => {
-      displayError(thisForm, error);
+      displayError(thisForm, error.message);
     });
-  }
+  }  
 
   function displayError(thisForm, error) {
     thisForm.querySelector('.loading').classList.remove('d-block');
